@@ -16,15 +16,17 @@ import se.nss.candidate.service.CandidateService;
 /**
  * @author yokum
  *
- *         create?email=[email]&name=[name]:create a new candidate with an  auto-generated id and email and name as passed values.
+ *         create?email=[email]&name=[name]:create a new candidate with an
+ *         auto-generated id and email and name as passed values.
  *         delete?id=[id]: delete the candidate with the passed id.
- *         get-by-email?email=[email]: retrieve the id for the candidate with the passed email address. 
- *         update?id=[id]&email=[email]&name=[name]: update the email and the name for the candidate indentified by the
+ *         get-by-email?email=[email]: retrieve the id for the candidate with
+ *         the passed email address. update?id=[id]&email=[email]&name=[name]:
+ *         update the email and the name for the candidate indentified by the
  *         passed id.
  */
 
 @RestController
-@RequestMapping("/candidate")
+@RequestMapping(value = "/candidate", produces = "application/json")
 public class CandidateController {
 
 	@Autowired
@@ -45,15 +47,17 @@ public class CandidateController {
 	 */
 	@RequestMapping("/create")
 	@ResponseBody
-	public String create(String email, String name) {
+	public Candidate create(String email, String name) {
 		Candidate candidate = null;
 		try {
 			candidate = new Candidate(email, name);
 			candidate = candidateService.save(candidate);
 		} catch (Exception ex) {
-			return "Error creating the user: " + ex.toString();
+			throw new se.nss.candidate.web.support.MyResourceNotFoundException();
 		}
-		return "Candidate succesfully created! (id = " + candidate.getId() + ")";
+		// return "Candidate succesfully created! (id = " + candidate.getId() +
+		// ")";
+		return candidate;
 	}
 
 	/**
