@@ -31,6 +31,7 @@ public class CandidateController {
 
 	@Autowired
 	private CandidateService candidateService;
+	
 
 	public CandidateController() {
 
