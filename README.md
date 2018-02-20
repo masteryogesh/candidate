@@ -1,6 +1,6 @@
 # candidate
 
-Usage
+## usage
 
 Run the application and go on http://localhost:8080/
 
