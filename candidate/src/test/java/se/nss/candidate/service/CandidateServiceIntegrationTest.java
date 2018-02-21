@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author yokum
+ * IntegrationTest
  *
  */
 @RunWith(SpringRunner.class)
